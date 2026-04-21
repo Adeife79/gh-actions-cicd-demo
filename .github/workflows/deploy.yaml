@@ -24,7 +24,8 @@ jobs:
     - name: Configure AWS Crdentials
       uses: aws-actions/configure-aws-credentials@4
       with:
-        role-to-assume: arn:aws:iam::749929394992:role/gh-actions-role aws-region: ${{env.AWS_REGION}}
+        role-to-assume: arn:aws:iam::749929394992:role/gh-actions-role 
+        aws-region: ${{env.AWS_REGION}}
       
     - name: Create S3 Backend
       run: |
