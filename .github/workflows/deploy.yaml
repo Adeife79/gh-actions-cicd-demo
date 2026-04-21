@@ -63,6 +63,7 @@ jobs:
 
     - name: Build and Push Docker Image
       run: |
+        cd app
         docker build -t recipe-app:v2 .
         docker tag recipe-app:v2 ${{env.DOCKER_IMAGE}}
         docker push ${{env.DOCKER_IMAGE}}
