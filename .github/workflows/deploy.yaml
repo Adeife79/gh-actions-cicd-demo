@@ -49,8 +49,6 @@ jobs:
       run: |
        cd terraform-infra
        terraform apply -auto-approve
-       terraform output -raw private_key > private_key.pem
-       chmod 600 private_key.pem
 
        APP_IP=$(terraform output -raw app_public_ip)
        echo "APP_IP=$APP_IP" >> $GITHUB_ENV
@@ -68,6 +66,11 @@ jobs:
         docker tag recipe-app:v2 ${{env.DOCKER_IMAGE}}
         docker push ${{env.DOCKER_IMAGE}}
 
+    - name: Set up SSH Key
+      run: | 
+        mkdir -p ~/.ssh
+        echo "${{secrets.APP_SSH_KEY}}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
 #    - name: Login to Docker Hub
 #      run: echo "${{secrets.DOCKER_PASSWORD}}" | docker login -u "${{secrets.DOCKER_USERNAME}}" --password-stdin
 
@@ -85,8 +88,20 @@ jobs:
       with:
         host: ${{env.APP_IP}}
         username: ec2-user
-        key_path: ./private_key.pem
+        key: ${{secrets.APP_SSH_KEY}}
+        port: 22
         script: |
+          echo "Successfully connected to the instance"
+          sudo yum update -y || true
+          sudo yum install -y ca-certificates curl gnupg || true
+          sudo install -m 0755 -d /etc/apt/keyrings || true
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg || true
+          sudo chmod a+r /etc/apt/keyrings/docker.gpg || true
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+          sudo yum update -y || true
+          sudo yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+          sudo systemctl start docker
+          sudo systemctl enable docker
           sudo docker login -u ${{secrets.DOCKERHUB_USERNAME}} -p ${{secrets.DOCKERHUB_PASSWORD}}
           sudo docker pull ${{env.DOCKER_IMAGE}}
           sudo docker stop app || true
