@@ -84,6 +84,6 @@ jobs:
           sudo docker pull ${{env.DOCKER_IMAGE}}
           sudo docker stop app || true
           sudo docker rm app || true
-          sudo docker run -d --name recipe-app -p 8090:8090 ${{env.DOCKER_IMAGE}}
+          sudo docker run -d --name recipe-app -p 8090:80 ${{env.DOCKER_IMAGE}}
 
 # ssh -i key.pem -o StrictHostKeyChecking=no ec2-user@${{steps.tf.output.ip}} << 'EOF'
