@@ -68,7 +68,6 @@ jobs:
 #      run: echo "${{secrets.DOCKER_PASSWORD}}" | docker login -u "${{secrets.DOCKER_USERNAME}}" --password-stdin
 
 #    - name: Get EC2 IP
-#      id: tf 
 #      run: echo "ip=$(terraform output -raw app_public_ip)" >> $GITHUB_OUTPUT
 
 #    - name: Setup SSH Key
