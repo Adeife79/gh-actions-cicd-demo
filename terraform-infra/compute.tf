@@ -14,7 +14,7 @@ resource "aws_instance" "app" {
     subnet_id = aws_subnet.app_subnet.id
     security_groups = [aws_security_group.sg.id]
 
-    key_name = app-ssh-key
+    key_name = "app-ssh-key"
 
     tags = {
         Name = "app-instance"
