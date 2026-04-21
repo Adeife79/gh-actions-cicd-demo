@@ -1,0 +1,68 @@
+.grid-item {
+    background-color:rgb(251, 255, 255)
+}
+
+.image {
+    width:100px;
+    border-radius: 50%;
+}
+
+h1 {
+    font-family: serif;
+    margin-left: 20px;
+}
+
+p {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-left: 20px;
+}
+
+h2 {
+    font-family:cursive;
+    font-size: 20px;
+    color:rgba(255, 73, 255, 0.532);
+}
+
+.prep {
+    background-color: rgba(245, 196, 228, 0.671);
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    padding: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 10px;
+}
+
+h3, h4, h5{
+    margin-left: 20px;
+    color:rgb(140, 74, 74);
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size:xx-large;
+}
+
+.ingredients, .instructions, .nutrition{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+table {
+    margin-left: 30px;
+}
+
+button {
+    background-color: rgb(239, 63, 63);
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: larger;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 20px;
+    border-radius: 10px;
+    border-color: aliceblue;
+}
+
+
+
+
+
