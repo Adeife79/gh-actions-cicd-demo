@@ -20,10 +20,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@4
+      uses: actions/checkout@v4
 
     - name: Configure AWS Crdentials
-      uses: aws-actions/configure-aws-credentials@4
+      uses: aws-actions/configure-aws-credentials@v4
       with:
         role-to-assume: arn:aws:iam::749929394992:role/gh-actions-role 
         aws-region: ${{env.AWS_REGION}}
