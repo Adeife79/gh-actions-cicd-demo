@@ -91,4 +91,4 @@ jobs:
           sudo docker rm app || true
           sudo docker run -d --name recipe-app -p 8090:80 ${{env.DOCKER_IMAGE}}
 
-# ssh -i key.pem -o StrictHostKeyChecking=no ec2-user@${{steps.tf.output.ip}} << 'EOF'
+
